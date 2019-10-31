@@ -1,12 +1,11 @@
-import React from "react";
-import Greetings from "./Greetings";
+import React from 'react';
+import MyForm from './MyForm';
 
 const App: React.FC = () => {
-  const onClick = (name: string) => {
-    console.log(`${name} says hello`);
-  };
-  // Property 'name' is missing
-  return <Greetings onClick={onClick} />;
+  const onSubmit = (form: { name: string; description: string }) => {
+    console.log(form);
+  }
+  return <MyForm onSubmit={onSubmit} />;
 };
 
 export default App;
