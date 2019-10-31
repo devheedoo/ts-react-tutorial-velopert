@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 type MyFormProps = {
   onSubmit: (form: { name: string; description: string }) => void;
 };
 
 function MyForm({ onSubmit }: MyFormProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [form, setform] = useState({
     name: '',
     description: ''
@@ -27,11 +29,12 @@ function MyForm({ onSubmit }: MyFormProps) {
       name: '',
       description: ''
     }); // 초기화
+    if (inputRef.current) inputRef.current.focus();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="name" value={name} onChange={handleChange} />
+      <input name="name" value={name} onChange={handleChange} ref={inputRef} />
       <input name="description" value={description} onChange={handleChange} />
       <button type="submit">등록</button>
     </form>
